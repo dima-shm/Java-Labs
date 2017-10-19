@@ -1,0 +1,14 @@
+{
+	"students": [
+	{"name":"Dima",  "age":19, "rating":25},
+	{"name":"Egor",  "age":20, "rating":20},
+	{"name":"Pasha", "age":18, "rating":35},
+	{"name":"Vova",  "age":20, "rating":15}
+	],
+	"listeners" : [
+	{"name":"Ivan",   "age":26, "organization":"BSU"},
+	{"name":"Gosha",  "age":25, "organization":"BSTU"},
+	{"name":"Anton",  "age":35, "organization":"BNTU"},
+	{"name":"Maksim", "age":24, "organization":"BSTU"}
+	]
+}
