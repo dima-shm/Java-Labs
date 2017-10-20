@@ -40,7 +40,7 @@ public class Manager implements IAction {
             JSONObject student = (JSONObject) student1;
             String name = (String) student.get("name");
             long age = (Long) student.get("age");
-            long rating = (Long) student.get("rating");
+            double rating = (Double) student.get("rating");
             staff.add(new Student(name, (int) age, rating));
         }
     }

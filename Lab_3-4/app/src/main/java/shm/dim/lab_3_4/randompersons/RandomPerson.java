@@ -1,5 +1,9 @@
 package shm.dim.lab_3_4.randompersons;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import shm.dim.lab_3_4.organization.Organization;
 import shm.dim.lab_3_4.units.Listener;
 import shm.dim.lab_3_4.units.Student;
@@ -12,8 +16,8 @@ public class RandomPerson {
     private RandomPerson() {
     }
 
-    private static int getRandomIntNum(int beginValue, int endValue) {
-        return (beginValue + (int)(Math.random() * endValue));
+    private static <T extends Number> int getRandomNum(T beginValue, T endValue) {
+        return (beginValue.intValue() + (int)(Math.random() * endValue.intValue()));
     }
 
     public static Listener getRandomListener() {
@@ -25,19 +29,24 @@ public class RandomPerson {
     }
 
     private static int getRandomAge() {
-        return getRandomIntNum(18, 50);
+        return getRandomNum(18, 50);
     }
 
     private static String getRandomName() {
-        return names[getRandomIntNum(0, names.length-1)];
+        return names[getRandomNum(0, names.length-1)];
     }
 
-    private static long getRandomRating() {
-        return (long)(getRandomIntNum(0, 100));
+    private static double getRandomRating() {
+        return (double)(getRandomNum(0.0, 100.0));
     }
 
     private static Organization getRandomOrg() {
-        int size = Organization.getORGANIZATIONS().size();
-        return Organization.getORGANIZATIONS().get(getRandomIntNum(0, size));
+        Organization.IOrganizationList orgList = () ->
+                Collections.unmodifiableList(Arrays.asList(Organization.values()));
+
+        int size = orgList.getOrganizationList().size();
+        List<Organization> organizationList = orgList.getOrganizationList();
+
+        return organizationList.get(getRandomNum(0, size));
     }
 }

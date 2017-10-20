@@ -1,7 +1,5 @@
 package shm.dim.lab_3_4.organization;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public enum Organization {
@@ -17,7 +15,7 @@ public enum Organization {
         return price;
     }
 
-    public static List<Organization> getORGANIZATIONS(){
-        return Collections.unmodifiableList(Arrays.asList(values()));
+    public interface IOrganizationList {
+        List<Organization> getOrganizationList();
     }
 }

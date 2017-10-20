@@ -1,9 +1,9 @@
 {
 	"students": [
-	{"name":"Dima",  "age":19, "rating":25},
-	{"name":"Egor",  "age":20, "rating":20},
-	{"name":"Pasha", "age":18, "rating":35},
-	{"name":"Vova",  "age":20, "rating":15}
+	{"name":"Dima",  "age":19, "rating":25.0},
+	{"name":"Egor",  "age":20, "rating":20.0},
+	{"name":"Pasha", "age":18, "rating":35.0},
+	{"name":"Vova",  "age":20, "rating":15.0}
 	],
 	"listeners" : [
 	{"name":"Ivan",   "age":26, "organization":"BSU"},
