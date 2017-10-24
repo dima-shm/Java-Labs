@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Калькулятор нормы калорий</string>
+    <string name="sex">Пол</string>
+    <string name="man">м</string>
+    <string name="woman">ж</string>
+    <string name="height">Рост</string>
+    <string name="height_units">см.</string>
+    <string name="weight">Вес</string>
+    <string name="weight_units">кг.</string>
+    <string name="age">Возраст</string>
+    <string name="age_units">лет</string>
+    <string name="activity_level">Уровень активности</string>
+    <string-array name="activity_level">
+        <item>Низкая</item>
+        <item>Невысокая</item>
+        <item>Умеренная</item>
+        <item>Высокая</item>
+        <item>Экстремальная</item>
+    </string-array>
+    <string name="result">Результат:</string>
+    <string name="calculate">Рассчитать</string>
+</resources>
