@@ -119,20 +119,17 @@
                 android:layout_width="130dp"
                 android:layout_height="45dp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <TextView
+                style="@style/TextViewResult"
+                android:id="@+id/textView"
+                android:layout_row="5"
+                android:layout_column="0"
+                android:text="@string/result" />
+            <TextView
+                style="@style/TextViewResult"
                 android:layout_row="5"
                 android:layout_column="1"
-                android:orientation="vertical" >
-                <TextView
-                    style="@style/TextViewResult"
-                    android:id="@+id/textView"
-                    android:text="@string/result" />
-                <TextView
-                    style="@style/TextViewResult"
-                    android:id="@+id/tvResults" />
-            </LinearLayout>
+                android:id="@+id/tvResults" />
 
             <Button
                 android:id="@+id/buttonPrintResults"
