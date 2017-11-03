@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Регистрация студентов</string>
+    <string name="next">Дальше</string>
+    <string name="back">Назад</string>
+    <string name="addPerson">Добавить участника</string>
+    <string name="showPersons">Просмотр участников</string>
+    <string name="enterSurname">Введите фамилию</string>
+    <string name="enterName">Введите имя</string>
+    <string name="enterMiddleName">Введите отчество</string>
+    <string name="enterBirthday">Введите дату рождения (dd.mm.yyyy)</string>
+    <string name="surname">Фамилия</string>
+    <string name="name">Имя</string>
+    <string name="middleName">Отчество</string>
+    <string name="birthday">Дата рождения</string>
+    <string name="saveToFile">Сохранить в файл</string>
+</resources>
