@@ -21,7 +21,7 @@
             <Button
                 android:id="@+id/buttonAddPerson"
                 style="@style/Button"
-                android:text="@string/addPerson"
+                android:text="@string/add_student"
                 android:onClick="onClick_AddPerson"
                 android:layout_gravity="center_horizontal" />
 

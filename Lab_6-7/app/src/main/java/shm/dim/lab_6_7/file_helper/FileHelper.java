@@ -58,7 +58,7 @@ public class FileHelper {
 
     // Прочитать файл
     public static String read() {
-        String str = null;
+        String str = new String();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while((line = br.readLine()) != null)
