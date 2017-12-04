@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="shm.dim.lab_8_9.SingUpActivity">
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            style="@style/ImageView"
+            android:src="@drawable/firebase_lockup_400" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            style="@style/EditText"
+            android:hint="@string/enter_email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            style="@style/EditText"
+            android:hint="@string/enter_password"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/buttonSignUp"
+            style="@style/Button"
+            android:text="@string/sign_up" />
+
+        <TextView
+            android:text="@string/already_have_an_account_login"
+            android:id="@+id/textViewLogin"
+            style="@style/TextView" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/ProgressBar"
+        android:visibility="gone" />
+
+</RelativeLayout>

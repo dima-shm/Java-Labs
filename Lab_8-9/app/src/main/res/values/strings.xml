@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Lab_8-9</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_account_sign_up">Don\'t have account? Sign Up</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="tap_on_icon_to_choose_profile_picture">Tap on icon to choose profile picture</string>
+    <string name="enter_name">Enter name</string>
+    <string name="save">Save</string>
+</resources>

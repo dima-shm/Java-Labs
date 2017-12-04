@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="shm.dim.lab_8_9.ProfileActivity">
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="@string/tap_on_icon_to_choose_profile_picture"
+            style="@style/TextView" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/personImageView"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                style="@style/ImageView"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/ic_person_white" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@style/ProgressBar"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/editTextName"
+            style="@style/EditText"
+            android:hint="@string/enter_name"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            style="@style/Button"
+            android:text="@string/save" />
+
+    </LinearLayout>
+
+</RelativeLayout>
