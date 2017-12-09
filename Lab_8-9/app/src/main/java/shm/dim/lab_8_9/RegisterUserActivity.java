@@ -89,8 +89,7 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
             public void onComplete(@NonNull Task<AuthResult> task) {
                 mProgressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Пользователь успешно зарегестрирован. Выполните вход", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RegisterUserActivity.this, MainActivity.class));
+                    startActivity(new Intent(RegisterUserActivity.this, CreateUserProfileActivity.class));
                     finish();
                 } else {
                     if(task.getException() instanceof FirebaseAuthUserCollisionException) {

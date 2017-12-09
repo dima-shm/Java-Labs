@@ -1,11 +1,16 @@
 package shm.dim.lab_8_9;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AdministrationActivity extends AppCompatActivity {
 
@@ -48,15 +53,32 @@ public class AdministrationActivity extends AppCompatActivity {
 
 
     private void addUser() {
-        startActivity(new Intent(AdministrationActivity.this, AdministrationAddUserActivity.class)
-                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        Toast.makeText(getApplicationContext(), "addUser", Toast.LENGTH_SHORT).show();
     }
 
     private void deleteUser() {
-
+        Toast.makeText(getApplicationContext(), "deleteUser", Toast.LENGTH_SHORT).show();
     }
 
     private void changeUser() {
+        Toast.makeText(getApplicationContext(), "changeUser", Toast.LENGTH_SHORT).show();
+    }
 
+
+    @Override
+    public void onBackPressed(){
+        new AlertDialog.Builder(this)
+                .setTitle("Выход")
+                .setMessage("Вы уверены, что хотите выйти из аккаунта?")
+                .setNegativeButton("Отмена", null)
+                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(AdministrationActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }).create().show();
     }
 }

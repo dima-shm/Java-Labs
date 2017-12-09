@@ -23,7 +23,7 @@
         <activity android:name=".UserActivity" />
         <activity android:name=".InformationActivity" />
         <activity android:name=".AdministrationActivity" />
-        <activity android:name=".AdministrationAddUserActivity"></activity>
+        <activity android:name=".CreateUserProfileActivity"></activity>
     </application>
 
 </manifest>
