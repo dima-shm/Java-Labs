@@ -1,12 +1,19 @@
 <resources>
     <string name="app_name">Lab_8-9</string>
-    <string name="enter_email">Enter email</string>
-    <string name="enter_password">Enter password</string>
-    <string name="login">Login</string>
-    <string name="don_t_have_account_sign_up">Don\'t have account? Sign Up</string>
-    <string name="sign_up">Sign up</string>
-    <string name="already_have_an_account_login">Already have an account? Login</string>
-    <string name="tap_on_icon_to_choose_profile_picture">Tap on icon to choose profile picture</string>
-    <string name="enter_name">Enter name</string>
-    <string name="save">Save</string>
+    <string name="enter_email">Введите email</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="repeat_password">Повторите пароль</string>
+    <string name="login">Вход</string>
+    <string name="don_t_have_account_sign_up">У Вас нет аккаунта? Зарегистрируйтесь</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="already_have_an_account_login">У Вас уже есть аккаунт? Выполните вход</string>
+    <string name="add_user">Добавить пользователя</string>
+    <string name="delete_user">Удалить пользователя</string>
+    <string name="change_info_about_user">Изменить информацию о пользователе</string>
+    <string name="tap_on_icon_to_choose_profile_picture">Нажмите на иконку, чтобы выбрать изображение профиля</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="enter_surname">Введите фамиллию</string>
+    <string name="enter_group">Введите группу</string>
+    <string name="enter_add_information">Введите дополнительую информацию</string>
+    <string name="save">Сохранить</string>
 </resources>

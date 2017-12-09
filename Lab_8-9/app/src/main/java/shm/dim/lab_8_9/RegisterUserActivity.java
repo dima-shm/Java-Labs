@@ -17,11 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
 
-public class SingUpActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterUserActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText mEmail, mPassword;
+    private EditText mEmail, mPassword, mRepeatPassword;
     private ProgressBar mProgressBar;
     private FirebaseAuth mAuth;
 
@@ -29,10 +28,11 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sing_up);
+        setContentView(R.layout.activity_register_user);
 
         mEmail = findViewById(R.id.editTextEmail);
         mPassword = findViewById(R.id.editTextPassword);
+        mRepeatPassword =findViewById(R.id.editTextRepeatPassword);
         mProgressBar = findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
 
@@ -43,11 +43,11 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private boolean emailIsCorrect(String email) {
         if(email.isEmpty()) {
-            mEmail.setError("Email is required");
+            mEmail.setError("Введите email");
             mEmail.requestFocus();
             return false;
         } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            mEmail.setError("Please enter a valid email");
+            mEmail.setError("Введите корректный email");
             mEmail.requestFocus();
             return false;
         } else {
@@ -57,11 +57,11 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private boolean passwordIsCorrect(String password) {
         if(password.isEmpty()) {
-            mPassword.setError("Password is required");
+            mPassword.setError("Введите пароль");
             mPassword.requestFocus();
             return false;
         } else if(password.length() < 6) {
-            mPassword.setError("Minimum lenght of password should be 6");
+            mPassword.setError("Минимальная длина пароля составляет 6 симолов");
             mPassword.requestFocus();
             return false;
         } else {
@@ -72,11 +72,14 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
     private void registerUser() {
         String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
-
-        if(!emailIsCorrect(email)){
+        String repeatPassword = mRepeatPassword.getText().toString().trim();
+        if(!emailIsCorrect(email) ||
+           !passwordIsCorrect(password) ||
+           !passwordIsCorrect(repeatPassword)) {
             return;
         }
-        if(!passwordIsCorrect(password)){
+        if (!password.equals(repeatPassword)) {
+            Toast.makeText(getApplicationContext(), "Пароли не совпадают", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -86,10 +89,12 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 mProgressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "User registered successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Пользователь успешно зарегестрирован. Выполните вход", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterUserActivity.this, MainActivity.class));
+                    finish();
                 } else {
                     if(task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(getApplicationContext(), "You are already registere", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Вы уже зарегистрировались", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }

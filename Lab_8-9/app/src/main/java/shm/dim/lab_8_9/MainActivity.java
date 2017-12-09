@@ -14,14 +14,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText mEmail, mPassword;
     private ProgressBar mProgressBar;
     private FirebaseAuth mAuth;
+
+    private final String ADMINISTRATION_ID = "AQwmDhExtKeexCaRQI0RGoNRXGh2";
 
 
     @Override
@@ -41,11 +42,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean emailIsCorrect(String email) {
         if(email.isEmpty()) {
-            mEmail.setError("Email is required");
+            mEmail.setError("Введите email");
             mEmail.requestFocus();
             return false;
         } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            mEmail.setError("Please enter a valid email");
+            mEmail.setError("Введите корректный email");
             mEmail.requestFocus();
             return false;
         } else {
@@ -55,11 +56,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean passwordIsCorrect(String password) {
         if(password.isEmpty()) {
-            mPassword.setError("Password is required");
+            mPassword.setError("Введите пароль");
             mPassword.requestFocus();
             return false;
         } else if(password.length() < 6) {
-            mPassword.setError("Minimum lenght of password should be 6");
+            mPassword.setError("Минимальная длина пароля составляет 6 симолов");
             mPassword.requestFocus();
             return false;
         } else {
@@ -67,14 +68,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private boolean userIsAdmin() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user.getUid().equals(ADMINISTRATION_ID)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private void userLogin() {
         String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
-
-        if(!emailIsCorrect(email)){
-            return;
-        }
-        if(!passwordIsCorrect(password)){
+        if(!emailIsCorrect(email) || !passwordIsCorrect(password)){
             return;
         }
 
@@ -84,7 +90,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onComplete(@NonNull Task<AuthResult> task) {
                 mProgressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()) {
-                    startActivity(new Intent(MainActivity.this, ProfileActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    if(userIsAdmin()) {
+                        Toast.makeText(getApplicationContext(), "Вы вошли под учетной записью администратора", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, AdministrationActivity.class));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Вы вошли под учетной записью пользователя", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, UserActivity.class));
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -93,15 +105,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.textViewSignUp:
-                startActivity(new Intent(this, SingUpActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                break;
             case R.id.buttonLogin:
                 userLogin();
+                break;
+            case R.id.textViewSignUp:
+                startActivity(new Intent(this, RegisterUserActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 break;
         }
     }

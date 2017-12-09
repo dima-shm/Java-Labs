@@ -6,15 +6,18 @@
     android:layout_height="match_parent"
     tools:context="shm.dim.lab_8_9.MainActivity">
 
+    <ImageView
+        style="@style/ImageView"
+        android:src="@drawable/firebase_lockup_400"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
     <LinearLayout
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <ImageView
-            style="@style/ImageView"
-            android:src="@drawable/firebase_lockup_400" />
+        android:orientation="vertical"
+        android:layout_centerInParent="true" >
 
         <EditText
             android:id="@+id/editTextEmail"

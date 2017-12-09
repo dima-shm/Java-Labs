@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="shm.dim.lab_8_9.SingUpActivity">
+    tools:context="shm.dim.lab_8_9.RegisterUserActivity">
+
+    <ImageView
+        style="@style/ImageView"
+        android:src="@drawable/firebase_lockup_400"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
 
     <LinearLayout
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <ImageView
-            style="@style/ImageView"
-            android:src="@drawable/firebase_lockup_400" />
+        android:orientation="vertical"
+        android:layout_centerInParent="true" >
 
         <EditText
             android:id="@+id/editTextEmail"
@@ -26,6 +29,12 @@
             android:id="@+id/editTextPassword"
             style="@style/EditText"
             android:hint="@string/enter_password"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/editTextRepeatPassword"
+            style="@style/EditText"
+            android:hint="@string/repeat_password"
             android:inputType="textPassword" />
 
         <Button

@@ -16,8 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SingUpActivity" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".RegisterUserActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".FirstAccountActivity" />
+        <activity android:name=".UserActivity" />
+        <activity android:name=".InformationActivity" />
+        <activity android:name=".AdministrationActivity" />
+        <activity android:name=".AdministrationAddUserActivity"></activity>
     </application>
 
 </manifest>
