@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mEmail = findViewById(R.id.editTextEmail);
-        mPassword = findViewById(R.id.editTextPassword);
+        mEmail = findViewById(R.id.editText_email);
+        mPassword = findViewById(R.id.editText_password);
         mProgressBar = findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.buttonLogin).setOnClickListener(this);
-        findViewById(R.id.textViewSignUp).setOnClickListener(this);
+        findViewById(R.id.button_login).setOnClickListener(this);
+        findViewById(R.id.textView_sign_up).setOnClickListener(this);
     }
 
 
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         startActivity(new Intent(MainActivity.this, AdministrationActivity.class));
                     } else {
                         Toast.makeText(getApplicationContext(), "Вы вошли под учетной записью пользователя", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(MainActivity.this, UserActivity.class));
+                        startActivity(new Intent(MainActivity.this, UserInformationActivity.class));
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -108,10 +108,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.buttonLogin:
+            case R.id.button_login:
                 userLogin();
                 break;
-            case R.id.textViewSignUp:
+            case R.id.textView_sign_up:
                 startActivity(new Intent(this, RegisterUserActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 break;
         }

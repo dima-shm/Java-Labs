@@ -82,7 +82,7 @@ public class User {
            !addInfo.isEmpty() && !photoUri.isEmpty()) {
             result.put("name",    name);
             result.put("surname", surname);
-            result.put("mark",    group);
+            result.put("group",    group);
             result.put("addInfo", addInfo);
             result.put("photoId", photoUri);
         }

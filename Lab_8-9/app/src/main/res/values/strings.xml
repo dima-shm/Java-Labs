@@ -7,7 +7,6 @@
     <string name="don_t_have_account_sign_up">У Вас нет аккаунта? Зарегистрируйтесь</string>
     <string name="sign_up">Регистрация</string>
     <string name="already_have_an_account_login">У Вас уже есть аккаунт? Выполните вход</string>
-    <string name="add_user">Добавить пользователя</string>
     <string name="delete_user">Удалить пользователя</string>
     <string name="change_info_about_user">Изменить информацию о пользователе</string>
     <string name="tap_on_icon_to_choose_profile_picture">Нажмите на иконку, чтобы выбрать изображение профиля</string>

@@ -20,26 +20,26 @@
         android:layout_centerInParent="true" >
 
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/editText_email"
             style="@style/EditText"
             android:hint="@string/enter_email"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/editText_password"
             style="@style/EditText"
             android:hint="@string/enter_password"
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/buttonLogin"
+            android:id="@+id/button_login"
             style="@style/Button"
             android:text="@string/login" />
 
         <TextView
-            android:text="@string/don_t_have_account_sign_up"
-            android:id="@+id/textViewSignUp"
-            style="@style/TextView" />
+            android:id="@+id/textView_sign_up"
+            style="@style/TextView"
+            android:text="@string/don_t_have_account_sign_up" />
 
     </LinearLayout>
 

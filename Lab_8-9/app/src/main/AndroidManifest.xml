@@ -21,7 +21,7 @@
         <activity android:name=".AdminActivity" />
         <activity android:name=".FirstAccountActivity" />
         <activity android:name=".UserActivity" />
-        <activity android:name=".InformationActivity" />
+        <activity android:name=".UserInformationActivity" />
         <activity android:name=".AdministrationActivity" />
         <activity android:name=".CreateUserProfileActivity"></activity>
     </application>

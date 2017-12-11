@@ -2,18 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/add_user"
-        android:title="@string/add_user"
-        android:orderInCategory="1" />
+        android:id="@+id/change_info_about_user"
+        android:title="@string/change_info_about_user"
+        android:orderInCategory="1"  />
 
     <item
         android:id="@+id/delete_user"
         android:title="@string/delete_user"
         android:orderInCategory="2"  />
-
-    <item
-        android:id="@+id/change_info_about_user"
-        android:title="@string/change_info_about_user"
-        android:orderInCategory="3"  />
 
 </menu>

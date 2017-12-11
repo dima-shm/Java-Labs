@@ -30,14 +30,14 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
-        mEmail = findViewById(R.id.editTextEmail);
-        mPassword = findViewById(R.id.editTextPassword);
-        mRepeatPassword =findViewById(R.id.editTextRepeatPassword);
+        mEmail = findViewById(R.id.editText_email);
+        mPassword = findViewById(R.id.editText_password);
+        mRepeatPassword =findViewById(R.id.editText_repeat_password);
         mProgressBar = findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.buttonSignUp).setOnClickListener(this);
-        findViewById(R.id.textViewLogin).setOnClickListener(this);
+        findViewById(R.id.button_sign_up).setOnClickListener(this);
+        findViewById(R.id.textView_login).setOnClickListener(this);
     }
 
 
@@ -106,10 +106,10 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.buttonSignUp:
+            case R.id.button_sign_up:
                 registerUser();
                 break;
-            case R.id.textViewLogin:
+            case R.id.textView_login:
                 startActivity(new Intent(this, MainActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                 break;
         }

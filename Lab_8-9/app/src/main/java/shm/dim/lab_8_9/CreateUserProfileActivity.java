@@ -46,16 +46,16 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user_profile);
 
-        mEditTextName = findViewById(R.id.editTextName);
-        mEditTextSurname = findViewById(R.id.editTextSurname);
-        mEditTextGroup = findViewById(R.id.editTextGroup);
-        mEditTextAddInfo = findViewById(R.id.editTextAddInfo);
-        mImageView = findViewById(R.id.imageViewProfile);
-        mProgressBar = findViewById(R.id.progressBar);
+        mEditTextName = findViewById(R.id.editText_name);
+        mEditTextSurname = findViewById(R.id.editText_surname);
+        mEditTextGroup = findViewById(R.id.editText_group);
+        mEditTextAddInfo = findViewById(R.id.editText_add_info);
+        mImageView = findViewById(R.id.imageView_profile);
+        mProgressBar = findViewById(R.id.progressBar_profile_image);
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.imageViewProfile).setOnClickListener(this);
-        findViewById(R.id.buttonSave).setOnClickListener(this);
+        findViewById(R.id.imageView_profile).setOnClickListener(this);
+        findViewById(R.id.button_save).setOnClickListener(this);
     }
 
 
@@ -179,10 +179,10 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.imageViewProfile:
+            case R.id.imageView_profile:
                 showImageChooser();
                 break;
-            case R.id.buttonSave:
+            case R.id.button_save:
                 saveUserInformation();
                 break;
         }

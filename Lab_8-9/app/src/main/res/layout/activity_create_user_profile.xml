@@ -22,40 +22,39 @@
                     android:text="@string/tap_on_icon_to_choose_profile_picture" />
 
                 <ImageView
-                    android:id="@+id/imageViewProfile"
+                    android:id="@+id/imageView_profile"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     style="@style/ImageView"
-                    android:src="@drawable/ic_person_white"
-                    android:background="@color/colorPrimary"/>
+                    android:src="@drawable/ic_person" />
 
                 <ProgressBar
-                    android:id="@+id/progressBar"
+                    android:id="@+id/progressBar_profile_image"
                     style="@style/ProgressBar"
                     android:visibility="gone"/>
 
             </RelativeLayout>
 
             <EditText
-                android:id="@+id/editTextName"
+                android:id="@+id/editText_name"
                 style="@style/EditText"
                 android:hint="@string/enter_name"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editTextSurname"
+                android:id="@+id/editText_surname"
                 style="@style/EditText"
                 android:hint="@string/enter_surname"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editTextGroup"
+                android:id="@+id/editText_group"
                 style="@style/EditText"
                 android:hint="@string/enter_group"
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/editTextAddInfo"
+                android:id="@+id/editText_add_info"
                 style="@style/EditText"
                 android:hint="@string/enter_add_information"
                 android:inputType="text" />
@@ -63,7 +62,7 @@
 
 
             <Button
-                android:id="@+id/buttonSave"
+                android:id="@+id/button_save"
                 style="@style/Button"
                 android:text="@string/save" />
 
