@@ -196,6 +196,7 @@ public class AdministrationActivity extends AppCompatActivity implements View.On
         intent.putExtra("userGroup", user.getGroup());
         intent.putExtra("userAddInfo", user.getAddInfo());
         intent.putExtra("userPhotoUri", user.getPhotoUri());
+        intent.putExtra("userKey", user.getKey());
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

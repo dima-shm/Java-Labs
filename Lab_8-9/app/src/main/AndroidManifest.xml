@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -17,14 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterUserActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".AdminActivity" />
-        <activity android:name=".FirstAccountActivity" />
-        <activity android:name=".UserActivity" />
         <activity android:name=".UserInformationActivity" />
         <activity android:name=".AdministrationActivity" />
         <activity android:name=".CreateUserProfileActivity" />
-        <activity android:name=".ChangeUserInformationActivity"></activity>
+        <activity android:name=".ChangeUserInformationActivity" />
     </application>
 
 </manifest>

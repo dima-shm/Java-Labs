@@ -91,10 +91,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mProgressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()) {
                     if(userIsAdmin()) {
-                        Toast.makeText(getApplicationContext(), "Вы вошли под учетной записью администратора", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this, AdministrationActivity.class));
                     } else {
-                        Toast.makeText(getApplicationContext(), "Вы вошли под учетной записью пользователя", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this, UserInformationActivity.class));
                     }
                 } else {

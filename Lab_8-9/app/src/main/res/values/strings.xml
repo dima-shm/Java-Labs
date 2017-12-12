@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab_8-9</string>
+    <string name="app_name">Firebase</string>
     <string name="enter_email">Введите email</string>
     <string name="enter_password">Введите пароль</string>
     <string name="repeat_password">Повторите пароль</string>

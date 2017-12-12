@@ -8,7 +8,12 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/editText_name_and_surname"
+        android:id="@+id/editText_name"
+        style="@style/EditText"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/editText_surname"
         style="@style/EditText"
         android:textAlignment="center" />
 
@@ -27,7 +32,8 @@
     <EditText
         android:id="@+id/editText_group"
         style="@style/EditText"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/editText_add_info"
