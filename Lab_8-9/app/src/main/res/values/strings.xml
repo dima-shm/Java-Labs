@@ -15,4 +15,7 @@
     <string name="enter_group">Введите группу</string>
     <string name="enter_add_information">Введите дополнительую информацию</string>
     <string name="save">Сохранить</string>
+    <string name="find">Найти</string>
+    <string name="find_2">Найти...</string>
+    <string name="save_changes">Сохранить изменения</string>
 </resources>

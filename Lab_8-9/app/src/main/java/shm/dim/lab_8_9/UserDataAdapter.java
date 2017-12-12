@@ -18,16 +18,16 @@ public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.ViewHo
 
     private LayoutInflater inflater;
     private List<User> users;
-    private Context mContext;
+    private Context context;
     private final OnItemClickListener listener;
+
 
     public interface OnItemClickListener {
         void onItemClick(User item);
     }
 
-
     UserDataAdapter(Context context, List<User> users, OnItemClickListener listener) {
-        mContext = context;
+        this.context = context;
         this.users = users;
         this.inflater = LayoutInflater.from(context);
         this.listener = listener;
@@ -36,7 +36,6 @@ public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.ViewHo
 
     @Override
     public UserDataAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View view = inflater.inflate(R.layout.list_item, parent, false);
         return new ViewHolder(view);
     }
@@ -45,9 +44,11 @@ public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.ViewHo
     @Override
     public void onBindViewHolder(final UserDataAdapter.ViewHolder holder, int position) {
         User user = users.get(position);
+
         holder.nameView.setText(user.getName() + " " + user.getSurname());
         holder.groupView.setText(user.getGroup());
-        Glide.with(mContext).load(user.getPhotoUri()).into(holder.imageView);
+
+        Glide.with(context).load(user.getPhotoUri()).into(holder.imageView);
         holder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -63,10 +64,17 @@ public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.ViewHo
         return users.size();
     }
 
+    public void updateList(List<User> list) {
+        users = list;
+        notifyDataSetChanged();
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
         final ImageView imageView;
         final TextView nameView, groupView;
+
 
         ViewHolder(View view) {
             super(view);

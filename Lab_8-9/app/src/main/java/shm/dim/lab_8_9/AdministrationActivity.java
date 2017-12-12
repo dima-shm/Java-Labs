@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,15 +24,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdministrationActivity extends AppCompatActivity {
+public class AdministrationActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView;
+    private TextView mTextViewActionMsg;
+    private EditText mEditTextFind;
     private UserDataAdapter mUserDataAdapter;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
 
     private List<User> mUserList = new ArrayList<>();
+
+    private int selectedMenuItem = 0;
 
 
     @Override
@@ -44,14 +51,17 @@ public class AdministrationActivity extends AppCompatActivity {
         switch (item.getItemId())
         {
             case R.id.change_info_about_user:
-                changeUser();
+                selectedMenuItem = 1;
+                showActionMessage("Выберите пользователя, которого необходимо изменить");
                 return true;
             case R.id.delete_user:
-                deleteUser();
+                selectedMenuItem = 2;
+                showActionMessage("Выберите пользователя, которого необдходимо удалить");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
     }
 
     @Override
@@ -61,32 +71,90 @@ public class AdministrationActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(mToolbar);
+        mRecyclerView = findViewById(R.id.list);
+        mTextViewActionMsg = findViewById(R.id.textView_action_message);
+        mEditTextFind = findViewById(R.id.editText_find);
+
+        findViewById(R.id.button_find).setOnClickListener(this);
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference();
 
-        onPrepareData();
+        initListUsers();
+        showListUsers();
+    }
 
-        mRecyclerView = findViewById(R.id.list);
+
+
+    private void showListUsers() {
         mUserDataAdapter = new UserDataAdapter(getApplicationContext(), mUserList, new UserDataAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(User item) {
-                Toast.makeText(AdministrationActivity.this, mUserDataAdapter
-                        .getItemCount(), Toast.LENGTH_LONG ).show();
-                //startActivity(new Intent(AdministrationActivity.this, UserInformationActivity.class)
-                //        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            public void onItemClick(User user) {
+                removeActionMessage();
+                if(selectedMenuItem == 1) {
+                    changeUser(user);
+                    selectedMenuItem = 0;
+                } else if(selectedMenuItem == 2) {
+                    showDialogMessage("Удалить пользователя " +
+                            user.getName() + " " + user.getSurname() + "?", user);
+                } else {
+                    Toast.makeText(AdministrationActivity.this, "Выберите действие из пункта меню", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         mRecyclerView.setAdapter(mUserDataAdapter);
     }
 
+    private void showActionMessage(String msg) {
+        mTextViewActionMsg.setVisibility(View.VISIBLE);
+        mTextViewActionMsg.setText(msg);
+    }
 
+    private void removeActionMessage() {
+        mTextViewActionMsg.setVisibility(View.GONE);
+    }
 
-    private void onPrepareData() {
+    private void showDialogMessage(String msg, final User user) {
+        new AlertDialog.Builder(this)
+                .setMessage(msg)
+                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        selectedMenuItem = 0;
+                    }
+                })
+                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        removeUser(user);
+                        selectedMenuItem = 0;
+                    }
+                }).create().show();
+    }
+
+    private void initListUsers() {
         mDatabaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ShowData(dataSnapshot);
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    String key = data.getValue(User.class).getKey();
+                    String name = data.getValue(User.class).getName();
+                    String surname = data.getValue(User.class).getSurname();
+                    String group = data.getValue(User.class).getGroup();
+                    String addInfo = data.getValue(User.class).getAddInfo();
+                    String photoId = data.getValue(User.class).getPhotoUri();
+
+                    User user = new User();
+                    user.setKey(key);
+                    user.setName(name);
+                    user.setSurname(surname);
+                    user.setGroup(group);
+                    user.setAddInfo(addInfo);
+                    user.setPhotoUri(photoId);
+
+                    mUserList.add(user);
+                    mUserDataAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -111,32 +179,36 @@ public class AdministrationActivity extends AppCompatActivity {
         });
     }
 
-    private void ShowData(DataSnapshot dataSnapshot) {
-        for (DataSnapshot data : dataSnapshot.getChildren()) {
-            String key = data.getValue(User.class).getKey();
-            String name = data.getValue(User.class).getName();
-            String surname = data.getValue(User.class).getSurname();
-            String group = data.getValue(User.class).getGroup();
-            String photoId = data.getValue(User.class).getPhotoUri();
-
-            User student = new User();
-            student.setKey(key);
-            student.setName(name);
-            student.setSurname(surname);
-            student.setGroup(group);
-            student.setPhotoUri(photoId);
-
-            mUserList.add(student);
-            mUserDataAdapter.notifyDataSetChanged();
+    private void findUser() {
+        List<User> temp = new ArrayList();
+        for (User user : mUserList) {
+            if ((user.getName() + " " + user.getSurname()).contains(mEditTextFind.getText().toString())) {
+                temp.add(user);
+            }
         }
+        mUserDataAdapter.updateList(temp);
     }
 
-    private void changeUser() {
-        Toast.makeText(getApplicationContext(), "changeUser", Toast.LENGTH_SHORT).show();
+    private void changeUser(User user) {
+        Intent intent = new Intent(AdministrationActivity.this, ChangeUserInformationActivity.class);
+        intent.putExtra("userName", user.getName());
+        intent.putExtra("userSurname", user.getSurname());
+        intent.putExtra("userGroup", user.getGroup());
+        intent.putExtra("userAddInfo", user.getAddInfo());
+        intent.putExtra("userPhotoUri", user.getPhotoUri());
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
-    private void deleteUser() {
-        Toast.makeText(getApplicationContext(), "deleteUser", Toast.LENGTH_SHORT).show();
+    private void removeUser(User user) {
+        Toast.makeText(AdministrationActivity.this, "Пользователь " +
+                user.getName() + " " + user.getSurname() + " удален", Toast.LENGTH_SHORT).show();
+        mDatabaseReference.child("Users")
+                .child(user.getKey())
+                .removeValue();
+
+        mUserList.remove(user);
+        showListUsers();
     }
 
 
@@ -155,5 +227,14 @@ public class AdministrationActivity extends AppCompatActivity {
                         finish();
                     }
                 }).create().show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.button_find:
+                findUser();
+                break;
+        }
     }
 }

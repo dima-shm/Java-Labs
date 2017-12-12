@@ -45,7 +45,8 @@
         <TextView
             android:id="@+id/textView_login"
             style="@style/TextView"
-            android:text="@string/already_have_an_account_login" />
+            android:text="@string/already_have_an_account_login"
+            android:textColor="@color/colorOrange" />
 
     </LinearLayout>
 
