@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
 
-public class UserInformationActivity extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity {
 
     private TextView mName, mGroup, mAddInfo;
     private ImageView mProfileImage;
@@ -29,7 +29,7 @@ public class UserInformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_information);
+        setContentView(R.layout.activity_user_profile);
 
         mName = findViewById(R.id.textView_name_and_surname);
         mGroup = findViewById(R.id.textView_group);
@@ -78,7 +78,7 @@ public class UserInformationActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseAuth.getInstance().signOut();
-                        Intent intent = new Intent(UserInformationActivity.this, MainActivity.class);
+                        Intent intent = new Intent(UserProfileActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     }

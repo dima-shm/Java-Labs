@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterUserActivity" />
-        <activity android:name=".UserInformationActivity" />
+        <activity android:name=".UserProfileActivity" />
         <activity android:name=".AdministrationActivity" />
         <activity android:name=".CreateUserProfileActivity" />
         <activity android:name=".ChangeUserInformationActivity" />

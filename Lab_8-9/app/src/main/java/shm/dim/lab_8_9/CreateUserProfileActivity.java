@@ -159,7 +159,7 @@ public class CreateUserProfileActivity extends AppCompatActivity implements View
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Профиль создан", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(CreateUserProfileActivity.this, MainActivity.class));
+                                startActivity(new Intent(CreateUserProfileActivity.this, LoginActivity.class));
                                 finish();
                             }
                         }

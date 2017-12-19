@@ -110,7 +110,7 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
                 registerUser();
                 break;
             case R.id.textView_login:
-                startActivity(new Intent(this, MainActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
+                startActivity(new Intent(this, LoginActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                 break;
         }
     }

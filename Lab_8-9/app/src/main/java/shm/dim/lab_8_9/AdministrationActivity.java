@@ -223,7 +223,7 @@ public class AdministrationActivity extends AppCompatActivity implements View.On
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseAuth.getInstance().signOut();
-                        Intent intent = new Intent(AdministrationActivity.this, MainActivity.class);
+                        Intent intent = new Intent(AdministrationActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     }

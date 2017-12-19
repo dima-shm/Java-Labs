@@ -16,7 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText mEmail, mPassword;
     private ProgressBar mProgressBar;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         mEmail = findViewById(R.id.editText_email);
         mPassword = findViewById(R.id.editText_password);
@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mProgressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()) {
                     if(userIsAdmin()) {
-                        startActivity(new Intent(MainActivity.this, AdministrationActivity.class));
+                        startActivity(new Intent(LoginActivity.this, AdministrationActivity.class));
                     } else {
-                        startActivity(new Intent(MainActivity.this, UserInformationActivity.class));
+                        startActivity(new Intent(LoginActivity.this, UserProfileActivity.class));
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
