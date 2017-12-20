@@ -8,7 +8,6 @@
     <string name="sign_up">Регистрация</string>
     <string name="already_have_an_account_login">У Вас уже есть аккаунт? Выполните вход</string>
     <string name="delete_user">Удалить пользователя</string>
-    <string name="change_info_about_user">Изменить информацию о пользователе</string>
     <string name="tap_on_icon_to_choose_profile_picture">Нажмите на иконку, чтобы выбрать изображение профиля</string>
     <string name="enter_name">Введите имя</string>
     <string name="enter_surname">Введите фамилию</string>

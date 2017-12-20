@@ -1,49 +1,55 @@
 package shm.dim.lab_8_9;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ChangeUserInformationActivity extends AppCompatActivity implements View.OnClickListener {
+public class FragmentChangeUserInformation extends Fragment {
 
     private EditText mName, mSurname, mGroup, mAddInfo;
     private ImageView mProfileImage;
-    private Intent intent;
+    private User user;
 
-
-    @SuppressLint("SetTextI18n")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_change_user_information);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view =
+                inflater.inflate(R.layout.fragment_change_user_information, container, false);
 
-        mName = findViewById(R.id.editText_name);
-        mSurname = findViewById(R.id.editText_surname);
-        mGroup = findViewById(R.id.editText_group);
-        mAddInfo = findViewById(R.id.editText_add_info);
-        mProfileImage = findViewById(R.id.imageView);
+        mName = view.findViewById(R.id.editText_name);
+        mSurname = view.findViewById(R.id.editText_surname);
+        mGroup = view.findViewById(R.id.editText_group);
+        mAddInfo = view.findViewById(R.id.editText_add_info);
+        mProfileImage = view.findViewById(R.id.imageView);
 
-        findViewById(R.id.button_save).setOnClickListener(this);
+        view.findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveUserInformation();
+            }
+        });
 
-        intent = getIntent();
-
-        mName.setText(intent.getStringExtra("userName"));
-        mSurname.setText(intent.getStringExtra("userSurname"));
-        mGroup.setText(intent.getStringExtra("userGroup"));
-        mAddInfo.setText(intent.getStringExtra("userAddInfo"));
-
-        Glide.with(getApplicationContext())
-                .load(intent.getStringExtra("userPhotoUri"))
-                .into(mProfileImage);
+        return view;
     }
 
+
+    public void setUser(User user) {
+        this.user = user;
+        mName.setText(user.getName());
+        mSurname.setText(user.getSurname());
+        mGroup.setText(user.getGroup());
+        mAddInfo.setText(user.getAddInfo());
+        Glide.with(this)
+                .load(user.getPhotoUri())
+                .into(mProfileImage);
+    }
 
     private boolean nameIsEmpty(String name) {
         if(name.isEmpty()) {
@@ -84,15 +90,14 @@ public class ChangeUserInformationActivity extends AppCompatActivity implements 
             return;
         }
 
-        writeChangedUser(intent.getStringExtra("userKey"), name, surname,
-                group, addInfo, intent.getStringExtra("userPhotoUri"));
+        writeChangedUser(user.getKey(), name, surname,
+                group, addInfo, user.getPhotoUri());
 
-        startActivity(new Intent(ChangeUserInformationActivity.this, AdministrationActivity.class));
-        finish();
+        updateUsersList();
     }
 
     private void writeChangedUser(String userId, String name, String surname,
-                              String group, String addInfo, String photoUri) {
+                                  String group, String addInfo, String photoUri) {
         User user = new User(name, surname, group, addInfo, photoUri, userId);
         FirebaseDatabase.getInstance().getReference()
                 .child("Users")
@@ -104,13 +109,12 @@ public class ChangeUserInformationActivity extends AppCompatActivity implements 
                 .setValue(user);
     }
 
+    private void updateUsersList() {
+        FragmentManager fragmentManager = getFragmentManager();
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.button_save:
-                saveUserInformation();
-                break;
-        }
+        FragmentUsersList fragmentUsersList = (FragmentUsersList) fragmentManager
+                .findFragmentById(R.id.fragment_users_list);
+
+        fragmentUsersList.onResume();
     }
 }

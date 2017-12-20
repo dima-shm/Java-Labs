@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editText_name"
+                style="@style/EditText"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/editText_surname"
+                style="@style/EditText"
+                android:textAlignment="center" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    style="@style/ImageView" />
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/editText_group"
+                style="@style/EditText"
+                android:textAlignment="center"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/editText_add_info"
+                style="@style/EditText"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/button_save"
+                style="@style/Button"
+                android:text="@string/save_changes"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

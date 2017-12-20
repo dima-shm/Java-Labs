@@ -20,7 +20,16 @@ public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.ViewHo
     private List<User> users;
     private Context context;
     private final OnItemClickListener listener;
+    private static int position;
 
+
+    public static int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
     public interface OnItemClickListener {
         void onItemClick(User item);
@@ -47,12 +56,21 @@ public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.ViewHo
 
         holder.nameView.setText(user.getName() + " " + user.getSurname());
         holder.groupView.setText(user.getGroup());
+        Glide.with(context)
+                .load(user.getPhotoUri())
+                .into(holder.imageView);
 
-        Glide.with(context).load(user.getPhotoUri()).into(holder.imageView);
         holder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
                 menu.add(holder.getAdapterPosition(), 0,  0, "Удалить");
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setPosition(holder.getAdapterPosition());
+                return false;
             }
         });
 

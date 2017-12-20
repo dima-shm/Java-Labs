@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -28,12 +29,25 @@
 
     </RelativeLayout>
 
-    <fragment
-        android:id="@+id/fragment_users_list"
-        android:name="shm.dim.lab_8_9.FragmentUsersList"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        tools:layout="@layout/fragment_users_list" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <fragment
+            android:id="@+id/fragment_users_list"
+            android:name="shm.dim.lab_8_9.FragmentUsersList"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_users_list" />
+
+        <fragment
+            android:id="@+id/fragment_change_user_info"
+            android:name="shm.dim.lab_8_9.FragmentChangeUserInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_change_user_information" />
+
+    </LinearLayout>
 
 </LinearLayout>
