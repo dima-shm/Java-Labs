@@ -37,6 +37,10 @@ public class UserProfileActivity extends AppCompatActivity {
         mProfileImage = findViewById(R.id.imageView);
         mAuth = FirebaseAuth.getInstance();
 
+        mName.setClickable(false);
+        mGroup.setClickable(false);
+        mAddInfo.setClickable(false);
+
         loadUserInformation();
     }
 

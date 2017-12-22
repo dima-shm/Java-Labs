@@ -2,6 +2,7 @@ package shm.dim.lab_8_9;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -90,6 +91,7 @@ public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        final CardView mCardView;
         final ImageView imageView;
         final TextView nameView, groupView;
 
@@ -99,6 +101,7 @@ public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.ViewHo
             imageView = view.findViewById(R.id.image);
             nameView =  view.findViewById(R.id.name);
             groupView =  view.findViewById(R.id.group);
+            mCardView = view.findViewById(R.id.cardView);
         }
 
         public void bind(final User item, final OnItemClickListener listener) {
