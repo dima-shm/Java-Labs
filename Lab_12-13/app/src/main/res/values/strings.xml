@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Lab_12-13</string>
+    <string name="by_dima_shumanski">by Dima Shumanski</string>
+    <string-array name="anim_array">
+        <item>rotate</item>
+        <item>scale</item>
+        <item>alpha</item>
+        <item>translate</item>
+    </string-array>
+</resources>
